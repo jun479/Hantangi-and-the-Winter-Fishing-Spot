@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>한탕이와 겨울 낚싯터 - 팬게임</title>
+    <style>
+        /* 07모드 핵심: 맵고 깔끔한 블랙 테마 */
+        body { background-color: #1a1a1a; color: white; margin: 0; display: flex; flex-direction: column; align-items: center; font-family: 'Arial', sans-serif; }
+        #game-container { position: relative; width: 90vw; height: 80vh; margin-top: 20px; border: 5px solid #ff00ff; box-shadow: 0 0 20px #ff00ff; }
+        canvas { width: 100%; height: 100%; display: block; }
+        
+        /* 로딩바: 뭉탱이로 채워지는 느낌 */
+        #loading-bar { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        .progress { width: 300px; height: 20px; background: #333; border-radius: 10px; overflow: hidden; }
+        .fill { width: 0%; height: 100%; background: linear-gradient(90deg, #ff00ff, #00ffff); transition: width 0.3s; }
+        
+        /* 하단 가이드역 */
+        .info-panel { width: 90vw; margin-top: 20px; padding: 15px; background: #222; border-radius: 10px; border-left: 10px solid #ff00ff; }
+        .key { background: #444; padding: 2px 8px; border-radius: 4px; color: #00ffff; }
+    </style>
+</head>
+<body>
+    <h1>❄️ 한탕이와 겨울 낚싯터 ❄️</h1>
+    
+    <div id="game-container">
+        <div id="loading-bar">
+            <img src="hantang_icon.png" width="80" alt="로딩중"><br>
+            <p>지하실 물 빼는 중... (로딩)</p>
+            <div class="progress"><div class="fill" id="fill"></div></div>
+        </div>
+        <canvas id="unity-canvas"></canvas>
+    </div>
+
+    <div class="info-panel">
+        <h3>🎮 조작법 (기억 못하면 아이고난!)</h3>
+        <p><span class="key">F</span> : 낚시 시작 | <span class="key">Space</span> : 줄 감기 | <span class="key">E</span> : 가방 | <span class="key">Shift</span> : 대시</p>
+        <p>⚠️ 밤이 되면 <b>분홍 사린마</b>를 피해 이글루로 튀어야 함!</p>
+    </div>
+
+    <script>
+        // 유니티 인스턴스와 통신하고 로딩바를 제어하는 로직
+        const fill = document.getElementById('fill');
+        function onProgress(progress) {
+            fill.style.width = (progress * 100) + '%';
+        }
+        // 이 로직은 나중에 클로드가 짜준 Unity WebGL 로더와 연결하면 됨.
+    </script>
+</body>
+</html>
